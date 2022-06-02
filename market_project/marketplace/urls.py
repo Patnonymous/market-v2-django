@@ -1,5 +1,5 @@
 # Imports.
-from django.urls import path
+from django.urls import path, include
 
 # Import views.
 from . import views
@@ -9,5 +9,6 @@ from . import views
 app_name = 'marketplace'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
+    path('', include('django.contrib.auth.urls')),
     path('signup/', views.SignUpView.as_view(), name='signup'),
 ]

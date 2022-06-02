@@ -1,4 +1,4 @@
-{% extends "index_base.html" %}
+{% extends "marketplace/base_index.html" %}
 
 {% block title %}Sign Up{% endblock %}
 
@@ -9,4 +9,6 @@
     {{ form.as_p }}
     <button type="submit">Sign Up</button>
 </form>
-{% endblock %}
+
+<p class="mt-5">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+{% endblock content %}
