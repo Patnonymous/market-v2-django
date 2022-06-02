@@ -3,6 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<h1>Market Project Index</h1>
+
+<p>Nothing here at this index. Are you looking for the Market? <a href="{% url 'marketplace:index' %}">Click Here</a>
+</p>
+
+
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 <p><a href="{% url 'logout' %}">Log Out</a></p>

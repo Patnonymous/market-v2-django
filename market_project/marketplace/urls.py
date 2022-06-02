@@ -1,12 +1,13 @@
 # Imports.
 from django.urls import path
 
-
-from .views import SignUpView
+# Import views.
+from . import views
 
 
 # Set your URL patterns here.
 app_name = 'marketplace'
 urlpatterns = [
-    path("signup/", SignUpView.as_view(), name="signup"),
+    path('', views.IndexView.as_view(), name='index'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
 ]

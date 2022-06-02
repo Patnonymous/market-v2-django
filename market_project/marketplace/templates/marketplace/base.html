@@ -1,0 +1,38 @@
+{% load static %}
+<!-- Popper -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap css -->
+<link rel="stylesheet" type="text/css"
+    href="{% static 'marketplace/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css' %}">
+<!-- Bootstrap javascript. -->
+<script src="{% static 'marketplace/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+<!-- Favicon. -->
+<link rel="icon" type="image/x-icon" href="{% static 'marketplace/favicon.png' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Marketplace{% endblock %}</title>
+</head>
+
+<body>
+    <!-- Navbar. -->
+    <div id="navbar">
+        {% include './navbar.html' %}
+    </div>
+
+    <!--  Main content. -->
+    <div id="content" class="container">
+        {% block content%}
+        {% endblock content %}
+    </div>
+
+</body>
+
+</html>
