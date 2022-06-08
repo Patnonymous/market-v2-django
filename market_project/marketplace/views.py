@@ -2,8 +2,9 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 # Imports custom.
@@ -16,7 +17,7 @@ User = get_user_model()
 class SignUpView(CreateView):
     """
     SignUpView contains form for new account creation.
-    Extends CreateView and UserCreationForm so supports error messages and redirect
+    Extends CreateView and UserCreationForm, supports error messages and redirect
     out of the box.
 
     Rather ugly right now.
@@ -24,6 +25,16 @@ class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+
+
+class ChangePasswordView(PasswordChangeView):
+    """
+    ChangePasswordView contains a form for the current user to change their password.
+    Extends PasswordChangeView, supports error messages and redirect out of the box.
+
+    Also ugly right now. Should be extended with a custom form later.
+    """
+    template_name = 'marketplace/base_change_password.html'
 
 
 class IndexView(ListView):
