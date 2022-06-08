@@ -38,15 +38,6 @@ class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy('marketplace:account-details')
 
 
-# class ChangeAccountDetails(FormView):
-#     template_name = 'marketplace/base_change_account_details.html'
-#     form_class = EditAccountDetailsForm
-#     success_url = reverse_lazy('marketplace:account-details')
-
-#     def form_valid(self, form):
-#         return super().form_valid(form)
-
-
 class IndexView(ListView):
     """
     IndexView extends ListView and will display Featured market items.
