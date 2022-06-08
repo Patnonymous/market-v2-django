@@ -15,6 +15,11 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    class Meta:
+        permissions = [
+            ('market_admin', 'Can access Market specific administrative sections.')
+        ]
+
 
 class Category(models.Model):
     """
