@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 
 # Imports custom.
@@ -42,3 +42,7 @@ class IndexView(ListView):
 
     def get_queryset(self):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
+
+
+def account_detail_view(request):
+    return render(request, 'marketplace/base_account_details.html')

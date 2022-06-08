@@ -1,0 +1,16 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Account Details{% endblock title %}
+
+{% block content %}
+<h1>Account Details</h1>
+
+
+<div>
+    <p>Username: {{user.username}}</p>
+    <p>First Name: {{user.first_name}}</p>
+    <p>Last Name: {{user.last_name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Date Joined: {{user.date_joined}}</p>
+</div>
+{% endblock content %}
