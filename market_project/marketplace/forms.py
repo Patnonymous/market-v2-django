@@ -13,6 +13,19 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    """
+    CustomUserChangeForm for changing user details on the admin page.
+    """
     class Meta:
         model = CustomUser
         fields = ('username', 'email', 'first_name', 'last_name')
+
+
+class EditAccountDetailsForm(forms.ModelForm):
+    email = forms.EmailField(label='New Email', required=True)
+    first_name = forms.CharField(label='First Name', required=True)
+    last_name = forms.CharField(label='Last Name', required=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'first_name', 'last_name')

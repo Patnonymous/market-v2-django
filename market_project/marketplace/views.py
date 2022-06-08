@@ -1,14 +1,14 @@
 # Imports Django.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 # Imports custom.
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, EditAccountDetailsForm
 from .models import MarketItem
 User = get_user_model()
 
@@ -38,6 +38,15 @@ class ChangePasswordView(PasswordChangeView):
     success_url = reverse_lazy('marketplace:account-details')
 
 
+# class ChangeAccountDetails(FormView):
+#     template_name = 'marketplace/base_change_account_details.html'
+#     form_class = EditAccountDetailsForm
+#     success_url = reverse_lazy('marketplace:account-details')
+
+#     def form_valid(self, form):
+#         return super().form_valid(form)
+
+
 class IndexView(ListView):
     """
     IndexView extends ListView and will display Featured market items.
@@ -55,6 +64,14 @@ class IndexView(ListView):
 
     def get_queryset(self):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
+
+
+def change_account_details(request):
+    form = EditAccountDetailsForm(request.POST or None, instance=request.user)
+    if form.is_valid():
+        form.save()
+        return redirect('marketplace:account-details')
+    return render(request, 'marketplace/base_change_account_details.html', {'edit_account_form': form})
 
 
 @login_required

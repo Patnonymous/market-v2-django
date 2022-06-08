@@ -14,4 +14,5 @@ urlpatterns = [
     path('account-details/', views.account_detail_view, name='account-details'),
     path('change-password/', views.ChangePasswordView.as_view(),
          name='change-password'),
+    path('edit-account', views.change_account_details, name='edit-account'),
 ]

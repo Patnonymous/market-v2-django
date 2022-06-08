@@ -1,0 +1,17 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Change Account Details{% endblock title %}
+
+{% block content %}
+<h1>Edit Account</h1>
+
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ edit_account_form }}
+        <button class="btn btn-primary" type="submit">Confirm</button>
+    </form>
+</div>
+
+{% endblock content %}
