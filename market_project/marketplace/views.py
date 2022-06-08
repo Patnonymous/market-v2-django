@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
 
 # Imports custom.
 from .forms import CustomUserCreationForm
@@ -44,5 +45,11 @@ class IndexView(ListView):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
 
 
+@login_required
 def account_detail_view(request):
+    """
+    Displays basic information about the users account.
+
+    Will be extended to include a link to edit account information.
+    """
     return render(request, 'marketplace/base_account_details.html')

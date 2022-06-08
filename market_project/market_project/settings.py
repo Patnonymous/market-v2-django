@@ -108,6 +108,7 @@ AUTH_USER_MODEL = 'marketplace.CustomUser'
 # Authentication related redirection URLs.
 LOGIN_REDIRECT_URL = '/marketplace'
 LOGOUT_REDIRECT_URL = '/marketplace'
+LOGIN_URL = '/marketplace/login'
 
 
 # Internationalization
