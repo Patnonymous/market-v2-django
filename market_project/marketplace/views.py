@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # Imports custom.
 from .forms import CustomUserCreationForm, EditAccountDetailsForm
-from .models import MarketItem
+from .models import MarketItem, Category
 User = get_user_model()
 
 
@@ -57,7 +57,20 @@ class IndexView(ListView):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
 
 
+class CategoryManagementListView(ListView):
+    model = Category
+    template_name = 'marketplace/base_category_management.html'
+    context_object_name = 'category_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
 def change_account_details(request):
+    """
+    View displays a form for editing the current users information.
+    """
     form = EditAccountDetailsForm(request.POST or None, instance=request.user)
     if form.is_valid():
         form.save()
