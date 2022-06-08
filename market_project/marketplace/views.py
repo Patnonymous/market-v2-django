@@ -35,6 +35,7 @@ class ChangePasswordView(PasswordChangeView):
     Also ugly right now. Should be extended with a custom form later.
     """
     template_name = 'marketplace/base_change_password.html'
+    success_url = reverse_lazy('marketplace:account-details')
 
 
 class IndexView(ListView):
