@@ -1,0 +1,18 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Add Category{% endblock title %}
+
+{% block content %}
+<h1>Add New Category</h1>
+
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Category</button>
+    </form>
+</div>
+
+
+{% endblock content %}

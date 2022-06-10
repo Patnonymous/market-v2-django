@@ -16,5 +16,6 @@ urlpatterns = [
          name='change-password'),
     path('edit-account', views.change_account_details, name='edit-account'),
     path('category-management', views.CategoryManagementListView.as_view(),
-         name='category-management')
+         name='category-management'),
+    path('category-add', views.AddCategoryFormView.as_view(), name='category-add'),
 ]

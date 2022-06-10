@@ -21,6 +21,13 @@ class CustomUser(AbstractUser):
         ]
 
 
+# Category section.
+class CategoryManager(models.Manager):
+    def create_category(self, category_name):
+        category = self.create(category_name=category_name)
+        return category
+
+
 class Category(models.Model):
     """
     A category identifier for market items.
@@ -37,6 +44,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
 
+# Market Item section.
 class MarketItem(models.Model):
     """
     Market Items can be posted by all types of users.

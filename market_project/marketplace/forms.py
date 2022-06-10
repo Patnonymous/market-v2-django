@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import CustomUser
+from .models import Category, CustomUser
 
 
 # Create custom forms here.
@@ -29,3 +29,11 @@ class EditAccountDetailsForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'first_name', 'last_name')
+
+
+class AddNewCategoryForm(forms.ModelForm):
+    category_name = forms.CharField(label='Category Name', required=True)
+
+    class Meta:
+        model = Category
+        fields = ('category_name',)

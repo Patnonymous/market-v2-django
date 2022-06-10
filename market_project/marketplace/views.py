@@ -8,7 +8,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 # Imports custom.
-from .forms import CustomUserCreationForm, EditAccountDetailsForm
+from .forms import AddNewCategoryForm, CustomUserCreationForm, EditAccountDetailsForm
 from .models import MarketItem, Category
 User = get_user_model()
 
@@ -67,9 +67,23 @@ class CategoryManagementListView(ListView):
         return context
 
 
+class AddCategoryFormView(FormView):
+    template_name = 'marketplace/base_category_add.html'
+    form_class = AddNewCategoryForm
+    success_url = reverse_lazy('marketplace:category-management')
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.save()
+        return super().form_valid(form)
+
+
 def change_account_details(request):
     """
     View displays a form for editing the current users information.
+
+    Since an instance is supplied, form.save() will update said Model instance instead of creating a new one.
     """
     form = EditAccountDetailsForm(request.POST or None, instance=request.user)
     if form.is_valid():
