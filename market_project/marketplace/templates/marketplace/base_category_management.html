@@ -9,7 +9,8 @@
     {% if category_list %}
     <ul>
         {% for category in category_list %}
-        <li>{{ category.category_name }}</li>
+        <li>ID PK: {{category.id}}, Name: {{ category.category_name }} | <a
+                href="{% url 'marketplace:category-delete' category.id %}">Delete</a></li>
         {% endfor %}
     </ul>
 

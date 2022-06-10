@@ -35,7 +35,7 @@ class Category(models.Model):
 
     str returns the category name.
     """
-    category_name = models.CharField(max_length=200)
+    category_name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.category_name

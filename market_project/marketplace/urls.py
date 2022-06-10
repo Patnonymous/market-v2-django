@@ -18,4 +18,5 @@ urlpatterns = [
     path('category-management', views.CategoryManagementListView.as_view(),
          name='category-management'),
     path('category-add', views.AddCategoryFormView.as_view(), name='category-add'),
+    path('category-delete/<int:pk>', views.delete_category, name='category-delete'),
 ]

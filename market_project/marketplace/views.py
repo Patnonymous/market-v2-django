@@ -57,6 +57,7 @@ class IndexView(ListView):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
 
 
+# Category views section.
 class CategoryManagementListView(ListView):
     model = Category
     template_name = 'marketplace/base_category_management.html'
@@ -68,6 +69,9 @@ class CategoryManagementListView(ListView):
 
 
 class AddCategoryFormView(FormView):
+    """
+    Displays a form with relevant inputs to add a new category.
+    """
     template_name = 'marketplace/base_category_add.html'
     form_class = AddNewCategoryForm
     success_url = reverse_lazy('marketplace:category-management')
@@ -79,6 +83,13 @@ class AddCategoryFormView(FormView):
         return super().form_valid(form)
 
 
+def delete_category(request, pk):
+    category_to_delete = Category.objects.get(id=pk)
+    category_to_delete.delete()
+    return redirect('marketplace:category-management')
+
+
+# Account details views section.
 def change_account_details(request):
     """
     View displays a form for editing the current users information.
