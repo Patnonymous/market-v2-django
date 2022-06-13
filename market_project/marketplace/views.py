@@ -8,7 +8,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 # Imports custom.
-from .forms import AddNewCategoryForm, CustomUserCreationForm, EditAccountDetailsForm
+from .forms import AddNewCategoryForm, AddNewItemForm, CustomUserCreationForm, EditAccountDetailsForm
 from .models import MarketItem, Category
 User = get_user_model()
 
@@ -87,6 +87,34 @@ def delete_category(request, pk):
     category_to_delete = Category.objects.get(id=pk)
     category_to_delete.delete()
     return redirect('marketplace:category-management')
+
+
+# Market item views section.
+class MarketItemManagementListView(ListView):
+    model = MarketItem
+    template_name = 'marketplace/base_item_management.html'
+    context_object_name = 'item_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AddMarketItemFormView(FormView):
+    template_name = 'marketplace/base_item_add.html'
+    form_class = AddNewItemForm
+    success_url = reverse_lazy('marketplace:item-management')
+
+    def form_valid(self, form):
+        form.instance.item_owner = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+
+def delete_item(request, pk):
+    item_to_delete = MarketItem.objects.get(id=pk)
+    item_to_delete.delete()
+    return redirect('marketplace:item-management')
 
 
 # Account details views section.
