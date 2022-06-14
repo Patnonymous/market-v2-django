@@ -9,8 +9,8 @@
     {% if item_list %}
     <ul>
         {% for item in item_list %}
-        <li>ID PK: {{item.id}}, Name: {{ item.item_name }}, Owner: {{item.item_owner}} | <a
-                href="{% url 'marketplace:item-delete' item.id %}">Delete</a></li>
+        <li>ID PK: {{item.id}}, Name: {{ item.item_name }}, Owner: {{item.item_owner}}, Featured:
+            {{item.item_is_featured}} | <a href="{% url 'marketplace:item-delete' item.id %}">Delete</a></li>
         {% endfor %}
     </ul>
 
