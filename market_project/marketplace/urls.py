@@ -23,4 +23,5 @@ urlpatterns = [
          name='item-management'),
     path('item-add', views.AddMarketItemFormView.as_view(), name='item-add'),
     path('item-delete/<int:pk>', views.delete_item, name='item-delete'),
+    path('item/<int:pk>', views.MarketItemDetailView.as_view(), name='item-detail'),
 ]

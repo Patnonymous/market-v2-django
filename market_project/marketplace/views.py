@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, FormView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
@@ -109,6 +109,11 @@ class AddMarketItemFormView(FormView):
         form.instance.item_owner = self.request.user
         form.save()
         return super().form_valid(form)
+
+
+class MarketItemDetailView(DetailView):
+    model = MarketItem
+    template_name = 'marketplace/base_item_detail.html'
 
 
 def delete_item(request, pk):

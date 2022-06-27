@@ -1,0 +1,24 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Item Detail{% endblock title %}
+
+{% block content %}
+
+<div>
+    <p>ID: {{marketitem.id}}</p>
+    <p>Item Name: {{marketitem.item_name}}</p>
+    <p>Description: {{marketitem.item_description}}</p>
+    <p>Price: {{marketitem.item_price}}</p>
+    <p>Quantity Available: {{marketitem.item_quantity}}</p>
+    <p>Infinite Quantity: {{marketitem.item_infinite}}</p>
+    <p>Category: {{marketitem.item_category_id}}</p>
+    <p>Is Item Featured: {{marketitem.item_is_featured}}</p>
+    <p>Date Added: {{marketitem.item_date_added}}</p>
+    <p>Item Owner: {{marketitem.item_owner}}</p>
+</div>
+
+{% include "../widgets/flipping_card.html" %}
+
+
+
+{% endblock content %}
