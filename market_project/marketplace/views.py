@@ -89,6 +89,11 @@ def delete_category(request, pk):
     return redirect('marketplace:category-management')
 
 
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'marketplace/base_category_detail.html'
+
+
 # Market item views section.
 class MarketItemManagementListView(ListView):
     model = MarketItem

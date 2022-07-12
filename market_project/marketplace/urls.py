@@ -19,6 +19,8 @@ urlpatterns = [
          name='category-management'),
     path('category-add', views.AddCategoryFormView.as_view(), name='category-add'),
     path('category-delete/<int:pk>', views.delete_category, name='category-delete'),
+    path('category/<int:pk>', views.CategoryDetailView.as_view(),
+         name='category-detail'),
     path('item-management', views.MarketItemManagementListView.as_view(),
          name='item-management'),
     path('item-add', views.AddMarketItemFormView.as_view(), name='item-add'),
