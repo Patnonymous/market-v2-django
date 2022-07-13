@@ -3,6 +3,20 @@
 {% block title %}Featured Items{% endblock title %}
 
 {% block content %}
-<h1>Featured Items</h1>
-<p>Items will go here.</p>
+<div class="row">
+    <div class="col">
+        <h1>Featured Items</h1>
+    </div>
+</div>
+
+<div class="row">
+    {% for item in featured_item_listings %}
+    <div class="col border border-secondary">
+        {% include "../widgets/flipping_card.html" with item=item %}
+    </div>
+
+    {% endfor %}
+
+</div>
+
 {% endblock content %}
