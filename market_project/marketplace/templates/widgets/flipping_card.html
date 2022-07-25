@@ -1,46 +1,82 @@
-<div class="mt-5">
-    <div class="row">
-        <div class="col-md-3 m-4">
+{% url 'marketplace:item-detail' pk=item.id as the_url %}
 
-            <div class="card-wrapper">
-                <div class="content">
+<div class="card-wrapper border border-primary">
+    <div class="content">
 
-                    <div class="face-front z-depth-2">
-                        <img src="https://placekitten.com/150/150" alt="150 by 150 kitten" class="rounded-circle m-2"
-                            width="150px;" height="150px;">
+        <div class="face-front z-depth-2">
+            <img src="https://placekitten.com/150/150" alt="150 by 150 kitten" class="rounded-circle m-2" width="150px;"
+                height="150px;">
 
-                        <div class="card-body">
-                            <h4 class="font-weight-bold">Meow</h4>
-                            <hr>
+            <div class="card-body">
+                <h4 class="font-weight-bold">{{ item.item_name|default:"Default Name" }}</h4>
 
-                            <p class="font-weight-bold blue-text">I'm a cat.</p>
-                            <p>A longer description like lorem ipsum can go here.</p>
-                        </div>
-                    </div>
+                {% if item.item_is_featured %}
+                <h5 class="font-weight-bold">Featured!</h5>
+                {% endif %}
+                <hr>
+
+                <p>{{ item.item_description|default:"Default description."}}</p>
+            </div>
+        </div>
 
 
-                    <div class="face-back z-depth-2">
-                        <div class="card-body">
-                            <h4 class="font-weight-bold">About Me</h4>
-                            <hr>
+        <div class="face-back z-depth-2">
+            <div class="card-body m-1">
+                <h4 class="font-weight-bold">Item Information</h4>
+                <hr>
 
-                            <p>A description about this item. For example: This is a cat!</p>
-                            <hr>
+                <p>{{ item.item_description|default:"Default description back card." }}</p>
+                <hr>
 
-                            <ul class="list-inline">
-                                <li class="list-inline-item"><a href=""><i>A Link To Someplace</i></a></li>
-                                <li class="list-inline-item"><a href=""><i>A Link To A Place</i></a></li>
-                                <li class="list-inline-item"><a href=""><i>A Link To Another Place</i></a></li>
-                            </ul>
+                <div class="row">
+                    <div class="col-auto">${{ item.item_price|default:"Default item price." }}</div>
+                    {% if item.item_infinite %}
+                    <div class="col">QTY Available: Unlimited.</div>
+                    {% else %}
+                    <div class="col">QTY Available: {{ item.item_quantity|default:"Default item quantity." }}</div>
+                    {% endif %}
+                </div>
 
-                            <p>Do something with this button.</p>
-                            <h5 class="font-weight-bold">Something Awesome!</h5>
-                            <button class="btn btn-danger ms-1">Something</button>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-auto">
+                        {% if item.item_is_featured %}
+                        This is a featured item.
+                        {% else %}
+                        This is a normal item listing.
+                        {% endif %}
                     </div>
                 </div>
-            </div>
+                <div class="row mt-2">
+                    <div class="col-auto">
+                        {% if item.item_infinite %}
+                        This item is currently infinite.
+                        {% else %}
+                        Availability limited by quantity.
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
 
+
+                <div class="row mt-2">
+                    <a href="{{ the_url }}">Details</a>
+                </div>
+
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="spanQuantity">Quantity</span>
+                    </div>
+                    <input type="number" class="form-control" aria-label="Quantity" aria-describedby="spanQuantity">
+                </div>
+
+                <div class="row justify-content-center mb-1 mt-2">
+                    <div class="col-auto">
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </div>
