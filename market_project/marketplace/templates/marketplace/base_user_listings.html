@@ -1,0 +1,22 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}User Items{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>User Items</h1>
+    </div>
+</div>
+
+<div class="row">
+    {% for item in item_listings %}
+    <div class="col border border-secondary">
+        {% include "../widgets/flipping_card.html" with item=item %}
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

@@ -10,6 +10,7 @@ app_name = 'marketplace'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('', include('django.contrib.auth.urls')),
+    path('listings/', views.UserListingsView.as_view(), name='user-listings'),
     path('signup/', views.SignUpView.as_view(), name='signup'),
     path('account-details/', views.account_detail_view, name='account-details'),
     path('change-password/', views.ChangePasswordView.as_view(),
