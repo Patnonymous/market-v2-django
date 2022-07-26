@@ -57,7 +57,16 @@ class IndexView(ListView):
         return MarketItem.objects.filter(item_is_featured=True).order_by('-item_date_added')
 
 
+class UserListingsView(ListView):
+    template_name = 'marketplace/base_user_listings.html'
+    context_object_name = 'item_listings'
+
+    def get_queryset(self):
+        return MarketItem.objects.filter(item_is_featured=False).order_by('-item_date_added')
+
 # Category views section.
+
+
 class CategoryManagementListView(ListView):
     model = Category
     template_name = 'marketplace/base_category_management.html'
