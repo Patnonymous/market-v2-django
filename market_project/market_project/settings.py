@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 
 # Environment vars.
 env = environ.Env()
@@ -142,3 +143,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Define Media Root.
+MEDIA_ROOT = 'marketplace/media'

@@ -1,6 +1,7 @@
 # Imports Django.
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from django.views.generic import ListView, FormView, DetailView
 from django.views.generic.edit import CreateView
@@ -8,8 +9,8 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 # Imports custom.
-from .forms import AddNewCategoryForm, AddNewItemForm, CustomUserCreationForm, EditAccountDetailsForm
-from .models import MarketItem, Category
+from .forms import AddNewCategoryForm, AddNewItemForm, CustomUserCreationForm, EditAccountDetailsForm, AddNewItemImageForm
+from .models import MarketItem, Category, ItemImage
 User = get_user_model()
 
 
@@ -64,9 +65,8 @@ class UserListingsView(ListView):
     def get_queryset(self):
         return MarketItem.objects.filter(item_is_featured=False).order_by('-item_date_added')
 
+
 # Category views section.
-
-
 class CategoryManagementListView(ListView):
     model = Category
     template_name = 'marketplace/base_category_management.html'
@@ -130,10 +130,33 @@ class MarketItemDetailView(DetailView):
     template_name = 'marketplace/base_item_detail.html'
 
 
+class ItemImageManagementListView(ListView):
+    model = ItemImage
+    template_name = 'marketplace/base_item_image_management.html'
+    context_object_name = 'image_list'
+
+
+class AddItemImageFormView(FormView):
+    template_name = 'marketplace/base_item_image_add.html'
+    form_class = AddNewItemImageForm
+    success_url = reverse_lazy('marketplace:item-image-management')
+
+    def form_valid(self, form):
+        print('\nform_valid')
+        form.save()
+        return super().form_valid(form)
+
+
 def delete_item(request, pk):
     item_to_delete = MarketItem.objects.get(id=pk)
     item_to_delete.delete()
     return redirect('marketplace:item-management')
+
+
+def delete_image(request, pk):
+    image_to_delete = ItemImage.objects.get(id=pk)
+    image_to_delete.delete()
+    return redirect('marketplace:item-image-management')
 
 
 # Account details views section.

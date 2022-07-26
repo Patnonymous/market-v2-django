@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import Category, CustomUser, MarketItem
+from .models import Category, CustomUser, MarketItem, ItemImage
 
 
 # Create custom forms here.
@@ -61,3 +61,12 @@ class AddNewItemForm(forms.ModelForm):
         model = MarketItem
         fields = ('item_name', 'item_description', 'item_price', 'item_quantity',
                   'item_infinite', 'item_category_id', 'item_is_featured')
+
+
+class AddNewItemImageForm(forms.ModelForm):
+    name = forms.CharField(label='Image Name', required=True)
+    image_file = forms.ImageField(label='Image to Display', required=True)
+
+    class Meta:
+        model = ItemImage
+        fields = ('name', 'image_file')

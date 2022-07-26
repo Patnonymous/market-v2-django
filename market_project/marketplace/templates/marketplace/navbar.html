@@ -2,6 +2,7 @@
 {% url 'marketplace:user-listings' as listings_url %}
 {% url 'marketplace:category-management' as category_management_url %}
 {% url 'marketplace:item-management' as item_management_url %}
+{% url 'marketplace:item-image-management' as item_image_management_url %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -23,10 +24,12 @@
 
                 {% if perms.marketplace.market_admin %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if request.path == category_management_url or request.path == item_management_url %} active {% endif %}"
-                        href="{% url 'marketplace:category-management' %}" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Admin
-                        Actions</a>
+                    <a class="nav-link dropdown-toggle {% if request.path == category_management_url or request.path == item_management_url or request.path == item_image_management_url %} active {% endif %}" 
+                    href="{% url 'marketplace:category-management' %}" 
+                    id="navbarDropdown" role="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">Admin Actions</a>
+                    
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
                             <a class="dropdown-item" href="{% url 'marketplace:category-management' %}">Category
@@ -34,6 +37,10 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'marketplace:item-management' %}">Market Listings
+                                Management</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'marketplace:item-image-management' %}">Item Image
                                 Management</a>
                         </li>
                     </ul>

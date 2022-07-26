@@ -84,3 +84,15 @@ class MarketItem(models.Model):
     class Meta:
         verbose_name = 'Market Item'
         verbose_name_plural = 'Market Items'
+
+
+class ItemImage(models.Model):
+    name = models.CharField(max_length=200)
+    image_file = models.ImageField(upload_to='items/')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Item Image'
+        verbose_name_plural = 'Item Images'

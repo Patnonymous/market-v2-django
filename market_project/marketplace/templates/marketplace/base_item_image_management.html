@@ -1,0 +1,30 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Image Management{% endblock title %}
+
+{% block content %}
+
+<div>
+
+    {% if image_list %}
+    <ul>
+        {% for image in image_list %}
+        <li>ID PK: {{image.id}}, Name: <a href="#">{{image.name}}</a> | <a
+                href="{% url 'marketplace:item-image-delete' image.id %}">Delete</a>
+            | <img src="{{ image.image_file.url }}">
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+    <p>There are no images uploaded.</p>
+    {% endif %}
+</div>
+
+
+
+<div>
+    <a href="{% url 'marketplace:item-image-add' %}">Add New Image</a>
+</div>
+
+{% endblock content %}

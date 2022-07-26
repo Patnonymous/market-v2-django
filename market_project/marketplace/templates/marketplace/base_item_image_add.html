@@ -1,0 +1,18 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}Add Image{% endblock title %}
+
+{% block content %}
+<h1>Add New Image</h1>
+
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Image</button>
+    </form>
+</div>
+
+
+{% endblock content %}
