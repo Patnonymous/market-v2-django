@@ -11,7 +11,7 @@
         {% for image in image_list %}
         <li>ID PK: {{image.id}}, Name: <a href="#">{{image.name}}</a> | <a
                 href="{% url 'marketplace:item-image-delete' image.id %}">Delete</a>
-            | <img src="{{ image.image_file.url }}">
+            | <img src="{{ image.image_file.url }}" class="img-thumbnail responsive-img">
             </li>
         {% endfor %}
     </ul>

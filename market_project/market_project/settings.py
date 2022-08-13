@@ -148,3 +148,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Define Media Root.
 MEDIA_ROOT = 'marketplace/media'
+MEDIA_URL = 'marketplace/media/'

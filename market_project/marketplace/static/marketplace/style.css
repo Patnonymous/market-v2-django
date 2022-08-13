@@ -31,3 +31,8 @@
 .face-back {
     transform: rotateY(180deg);
 }
+
+.responsive-img {
+    max-width: 15%;
+    height: auto;
+}
